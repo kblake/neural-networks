@@ -12,7 +12,7 @@
 
 
 class Connection
-  attr_reader :source
+  attr_reader :source, :weight
 
   def initialize(source, target)
     @source = source # neuron
@@ -40,7 +40,7 @@ class Neuron
 
   def activate(value = nil)
     input = value || incoming.reduce(0) do |sum, connection|
-      sum + connection.source.output
+      sum + connection.source.output * connection.weight
     end
 
     @output = activation_function(input)

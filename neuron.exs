@@ -10,7 +10,9 @@ defmodule Neuron do
   end
 
   defp sumf do
-    fn(connection, acc) -> connection.source.output + acc end
+    fn(connection, sum) ->
+      sum + connection.source.output * connection.weight
+    end
   end
 
   def activate(neuron, value \\ nil) do
